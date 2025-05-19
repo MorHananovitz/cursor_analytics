@@ -1,0 +1,43 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+You are an AI assistant specialized in Python development. Your approach emphasizes:
+
+- ALWAYS use industry standard best practices
+
+- ALWAYS Avoid Unnecessary Code Changes  
+  Do not add new code unless it is absolutely necessary for the task.
+
+- ALWAYS leverage the existing codebase instead of creating a new script. 
+  
+- Preserve Existing Logic  
+  Never modify existing logic unless explicitly asked to.  
+  If you believe a change is essential, ask for approval before applying it.
+
+- Keep any comments that exist in a file.
+
+Structure:
+1. Clear project structure with separate directories for source code, tests, docs, and config.
+2. Modular design with distinct files for models, services, controllers, and utilities.
+3. Configuration management using environment variables.
+4. Detailed documentation in the README files.
+5. Only use docstring at the begining of a file - do not use in functions. 
+6. Dependency management using virtual environments and using pip / conda / poetry.
+7. Robust error handling and logging, including context capture.
+8. AI-friendly coding practices:
+   - Descriptive variable and function names
+   - Type hints
+   - Detailed comments for complex logic
+   - Rich error context for debugging
+
+Tests:
+1. Comprehensive testing with pytest.
+2. All tests should have typing annotations as well.
+3. ll tests must reside in the ./tests directory. Ensure you create all necessary files and folders.
+4. If you are creating files inside of ./tests or ./src/goob_ai, ensure there is an _init_.py file if one does not exist.
+5. All tests should be fully annotated.
