@@ -195,7 +195,6 @@ class PostgreSQLConnection(DatabaseConnection):
         query: str, 
         params: Optional[Union[tuple, dict]] = None,
         timeout: int = 3000,
-        max_rows: int = 1000
     ) -> Optional[pd.DataFrame]:
         if not self.is_connected():
             if not self.connect():
@@ -309,7 +308,7 @@ class SnowflakeConnection(DatabaseConnection):
 # Helper functions to create and connect database instances
 
 def get_mysql_connection(for_schema_analysis: bool = False) -> MySQLConnection:
-    connection = MySQLConnection(for_schema_analysis)
+    connection = MySQLConnection()
     connection.connect()
     return connection
 
@@ -322,3 +321,6 @@ def get_snowflake_connection() -> SnowflakeConnection:
     connection = SnowflakeConnection()
     connection.connect()
     return connection 
+
+def execute_query(connection: DatabaseConnection, query: str, params: Optional[Union[tuple, dict]] = None, timeout: int = 3000) -> Optional[pd.DataFrame]:
+    return connection.execute_query(query, params, timeout)
