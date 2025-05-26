@@ -5,6 +5,12 @@
 VENV_NAME = venv
 PYTHON = python3
 
+# Load environment variables
+ifneq (,$(wildcard .env))
+	include .env
+	export
+endif
+
 # Default target
 all: setup_env
 
@@ -12,8 +18,8 @@ all: setup_env
 setup_env:
 	@echo "--- Setting up virtual environment ($(VENV_NAME)) ---"
 	$(PYTHON) -m venv $(VENV_NAME)
-	$(VENV_NAME)/bin/pip install --upgrade pip
-	$(VENV_NAME)/bin/pip install -r requirements.txt
+	$(CURDIR)/$(VENV_NAME)/bin/pip install --upgrade pip
+	$(CURDIR)/$(VENV_NAME)/bin/pip install -r requirements.txt
 	@echo ""
 	@echo ">>> Virtual environment '$(VENV_NAME)' created and dependencies installed."
 	@echo ">>> Activate it by running: source $(VENV_NAME)/bin/activate"

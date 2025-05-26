@@ -88,9 +88,7 @@ This notebook serves as both a tutorial and a template for your own data analysi
 
 ## Database Connectivity
 
-(Retained for now, assuming .env and connection logic might be recreated by user)
-
-If you plan to connect to databases, create a `.env` file in your project root with your database credentials. You can use `python-dotenv` (included in `requirements.txt`) to load these variables.
+If you plan to connect to databases, create a `.env` file in your project root with your database credentials. The environment variables will be loaded automatically by the Makefile.
 
 **Example `.env.template` (copy to `.env` and fill in your details):**
 ```

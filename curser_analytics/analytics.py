@@ -5,7 +5,6 @@ import argparse
 from typing import Optional, Dict, Any, Callable, Union
 import pandas as pd
 from pathlib import Path
-from dotenv import load_dotenv
 import datetime
 import pickle
 
@@ -160,8 +159,7 @@ def save_results_as_pickle(results: pd.DataFrame, query_name: str) -> str:
     return str(filepath)
 
 def main() -> None:
-    # Load environment variables from .env file
-    load_dotenv()
+    # Environment variables should be loaded by the Makefile or system
     
     # Parse command line arguments
     args = parse_arguments()

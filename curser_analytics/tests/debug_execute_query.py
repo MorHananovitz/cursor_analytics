@@ -1,6 +1,5 @@
 import os
 import sys
-from dotenv import load_dotenv
 import pandas as pd
 
 # Import the database connection module
@@ -10,8 +9,7 @@ from curser_analytics.analytics import run_analysis, load_query_from_file
 def debug_execute_query():
     print("=== MySQL Query Execution Debug ===")
     
-    # Load environment variables
-    load_dotenv()
+    # Environment variables should be loaded by the Makefile or system
     
     # Get connection
     print("\nAttempting to connect to MySQL...")

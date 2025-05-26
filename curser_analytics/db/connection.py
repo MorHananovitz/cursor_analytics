@@ -21,7 +21,6 @@ import os
 import logging
 from typing import Dict, Any, Optional, Union, List
 import pandas as pd
-from dotenv import load_dotenv
 
 # Configure logging
 logging.basicConfig(
@@ -30,8 +29,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Load environment variables
-load_dotenv()
+# Note: Environment variables should be loaded in the Makefile or by the system before running
 
 class DatabaseConnection:
     def __init__(self):
@@ -62,7 +60,7 @@ class DatabaseConnection:
 
 
 class MySQLConnection(DatabaseConnection):
-    def __init__(self, for_schema_analysis: bool = False):
+    def __init__(self, for_schema_analysis: bool = False, database: str = None):
         super().__init__()
         self.for_schema_analysis = for_schema_analysis
         
@@ -72,7 +70,7 @@ class MySQLConnection(DatabaseConnection):
             'port': int(os.getenv('MYSQL_PORT', '3306')),
             'user': os.getenv('MYSQL_USER'),
             'password': os.getenv('MYSQL_PASSWORD'),
-            'database': os.getenv('MYSQL_DATABASE')
+            'database': database or os.getenv('MYSQL_DATABASE')
         }
         
         # Add additional options for schema analysis
@@ -161,6 +159,32 @@ class MySQLConnection(DatabaseConnection):
         except Exception as e:
             logger.error(f"Query execution failed: {e}")
             return None
+        finally:
+            if cursor:
+                cursor.close()
+
+    def switch_database(self, database: str) -> bool:
+        """
+        Switch to a different database on the same connection.
+        
+        Args:
+            database: The name of the database to switch to
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        if not self.is_connected():
+            if not self.connect():
+                return False
+                
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute(f"USE {database}")
+            self.config['database'] = database
+            return True
+        except Exception as e:
+            logger.error(f"Failed to switch to database {database}: {e}")
+            return False
         finally:
             if cursor:
                 cursor.close()
@@ -307,8 +331,8 @@ class SnowflakeConnection(DatabaseConnection):
 
 # Helper functions to create and connect database instances
 
-def get_mysql_connection(for_schema_analysis: bool = False) -> MySQLConnection:
-    connection = MySQLConnection()
+def get_mysql_connection(for_schema_analysis: bool = False, database: str = None) -> MySQLConnection:
+    connection = MySQLConnection(for_schema_analysis=for_schema_analysis, database=database)
     connection.connect()
     return connection
 
@@ -322,5 +346,53 @@ def get_snowflake_connection() -> SnowflakeConnection:
     connection.connect()
     return connection 
 
-def execute_query(connection: DatabaseConnection, query: str, params: Optional[Union[tuple, dict]] = None, timeout: int = 3000) -> Optional[pd.DataFrame]:
-    return connection.execute_query(query, params, timeout)
+def execute_query(connection: DatabaseConnection, query: str, params: Optional[Union[tuple, dict]] = None, timeout: int = 3000, max_rows: int = 1000, database: str = None) -> Optional[pd.DataFrame]:
+    """
+    Execute a query on the given database connection.
+    
+    Args:
+        connection: The database connection to use
+        query: The SQL query to execute
+        params: Optional parameters for the query
+        timeout: Query timeout in milliseconds
+        max_rows: Maximum number of rows to return
+        database: Optional database to switch to before executing the query
+        
+    Returns:
+        Optional[pd.DataFrame]: Results as a DataFrame for SELECT queries, None for other queries
+    """
+    if database and isinstance(connection, MySQLConnection):
+        connection.switch_database(database)
+    
+    return connection.execute_query(query, params, timeout, max_rows)
+
+def execute_query_multi_db(
+    connection: MySQLConnection, 
+    query: str, 
+    databases: List[str],
+    params: Optional[Union[tuple, dict]] = None, 
+    timeout: int = 3000, 
+    max_rows: int = 1000
+) -> Dict[str, Optional[pd.DataFrame]]:
+    """
+    Execute the same query on multiple databases and return results for each.
+    
+    Args:
+        connection: The MySQL connection to use
+        query: The SQL query to execute
+        databases: List of database names to query
+        params: Optional parameters for the query
+        timeout: Query timeout in milliseconds
+        max_rows: Maximum number of rows to return
+        
+    Returns:
+        Dict[str, Optional[pd.DataFrame]]: Dictionary mapping database names to their results
+    """
+    results = {}
+    
+    for db in databases:
+        logger.info(f"Executing query on database: {db}")
+        connection.switch_database(db)
+        results[db] = connection.execute_query(query, params, timeout, max_rows)
+    
+    return results

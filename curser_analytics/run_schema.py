@@ -20,9 +20,9 @@ if __name__ == "__main__":
     results = analyzer.analyze()
     
     # Save the schema analysis
-    schema_file = analyzer.save_results(results, filename="mysql_schema.txt")
+    schema_file = analyzer.save_results(results, filename="mysql_data_schema.txt")
     print(f"Schema analysis complete. Results saved to: {schema_file}")
     
     # Generate and save the ERD
-    erd_file = analyzer.generate_erd(results, filename="mysql_erd.txt")
+    erd_file = analyzer.generate_erd(results, filename="mysql_data_erd.txt")
     print(f"ERD generation complete. Saved to: {erd_file}") 

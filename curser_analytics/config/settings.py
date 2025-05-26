@@ -1,13 +1,12 @@
 """
 Configuration settings for the Curser Analytics package.
 
-This module loads configuration from .env files and provides access to settings.
+This module loads configuration from environment variables and provides access to settings.
 """
 
 import os
 from pathlib import Path
 from typing import Dict, Any, Optional
-from dotenv import load_dotenv
 
 # Define base paths
 ROOT_DIR = Path(__file__).parent.parent.parent.absolute()
@@ -25,11 +24,10 @@ class Settings:
         Initialize settings.
         
         Args:
-            env_file: Path to the .env file
+            env_file: Path to the .env file (no longer used directly, environment variables
+                      should be loaded by the Makefile or system)
         """
-        # Load environment variables from .env file if it exists
-        if os.path.exists(env_file):
-            load_dotenv(env_file)
+        # Environment variables should be loaded by the Makefile or system
         
         # MySQL connection settings
         self.mysql_config = {
