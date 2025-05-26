@@ -62,10 +62,57 @@ You can run these commands from the project's root directory.
 -   `README.md`: This file, providing an overview and instructions.
 -   (Your source code, notebooks, scripts, and `tests/` directory will reside here)
 
+## Installed Packages
+
+The environment includes the following packages categorized by functionality:
+
+### Core Data & Manipulation
+- **pandas** (≥1.3.0): Data manipulation and analysis library providing DataFrame structures.
+- **numpy** (≥1.20.0): Fundamental package for scientific computing with support for arrays and matrices.
+- **polars** (≥0.17.0): Fast DataFrame library implemented in Rust with a pandas-like API.
+
+### Data Visualization
+- **matplotlib** (≥3.5.0): Comprehensive library for creating static, animated, and interactive visualizations.
+- **seaborn** (≥0.11.0): Statistical data visualization based on matplotlib with a high-level interface.
+- **plotly** (≥5.5.0): Interactive graphing library for creating web-based visualizations.
+
+### Exploratory Data Analysis (EDA)
+- **ydata-profiling** (≥4.1.0): Generates profile reports from pandas DataFrames, including statistics and visualizations.
+- **sweetviz** (≥2.1.0): Creates beautiful, high-density visualizations for EDA with a single line of code.
+
+### Dashboards / Tableau-style Apps
+- **dash** (≥2.6.0): Framework for building web-based analytical applications with React components.
+- **streamlit** (≥1.12.0): App framework that turns data scripts into shareable web apps quickly.
+
+### SQL & Database Connectivity
+- **sqlalchemy** (≥1.4.0): SQL toolkit and Object-Relational Mapping (ORM) library.
+- **duckdb** (≥0.6.0): In-process SQL OLAP database management system with pandas integration.
+- **pandasql** (≥0.7.0): Allows querying pandas DataFrames using SQL syntax.
+
+### Database Connectors
+- **mysql-connector-python** (≥8.0.0): Official MySQL driver for Python.
+- **snowflake-connector-python** (≥2.8.0): Connector for the Snowflake data warehouse.
+- **python-dotenv** (≥0.19.0): Reads key-value pairs from .env files and sets them as environment variables.
+
+### LLMs / Prompt Interfaces
+- **openai** (≥0.27.0): Python client for the OpenAI API, enabling access to GPT models.
+- **langchain** (≥0.0.200): Framework for developing applications powered by language models.
+- **llama-index** (≥0.6.0): Data framework for connecting custom data sources to LLMs.
+
+### Jupyter & Interactivity
+- **jupyterlab** (≥3.4.0): Web-based interactive development environment for notebooks, code, and data.
+- **ipython** (≥8.4.0): Enhanced interactive Python shell.
+- **ipywidgets** (≥8.0.0): Interactive HTML widgets for Jupyter notebooks.
+
+### Utilities
+- **tqdm** (≥4.62.0): Fast, extensible progress bar for loops and CLI applications.
+- **click** (≥8.0.0): Package for creating command-line interfaces with minimal code.
+- **tabulate** (≥0.8.9): Pretty-print tabular data in Python.
+
+### Development Dependencies
+- **pytest** (≥6.2.5): Framework for writing and running tests.
+
 ## Analytics Playground
-
-(Retained for now, assuming `analytics_playground.ipynb` might still be used with the environment)
-
 We provide an interactive Jupyter notebook that demonstrates the key features of many data science packages available in this environment:
 
 ```bash
@@ -78,13 +125,8 @@ Then open `analytics_playground.ipynb` in the Jupyter interface. This notebook i
 - Data manipulation with pandas and polars
 - Data visualization with matplotlib, seaborn, and plotly
 - Exploratory data analysis with ydata-profiling and sweetviz
-- Machine learning with scikit-learn
-- Time series forecasting with Prophet
-- Database connectivity
-- SQL queries with DuckDB
-- LLM integration with OpenAI and LangChain
+- SQL queries with various supported dbs
 
-This notebook serves as both a tutorial and a template for your own data analysis projects.
 
 ## Database Connectivity
 
@@ -141,20 +183,6 @@ schema_path = get_sample_path('full_schema.txt')
 with open(schema_path, 'r') as f:
     schema_data = f.read()
 ```
-
-### Sample Schema Content
-
-The full schema sample includes:
-- Detailed information on 110 tables
-- Column definitions with data types, nullability, and constraints
-- Foreign key relationships between tables
-- Table relationship summaries (outgoing and incoming references)
-
-This sample is ideal for:
-- Exploring database structure analysis
-- Testing query generation against a known schema
-- Understanding relationships between tables
-- Learning about database design patterns
 
 ### Listing Available Samples
 
@@ -260,19 +288,6 @@ The pre-commit configuration includes:
 pytest
 ```
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## Acknowledgements
-
-- The MySQL Connector team for their excellent Python driver
-- The pandas team for their powerful data analysis library
-
 ## VSCode Extensions
 
 For the best development experience with this project, we recommend installing the following VSCode extensions:
@@ -302,14 +317,6 @@ This repository provides multiple ways to set up your development environment, w
    - Database Connectivity (sqlalchemy, connectors, etc.)
    - ML & Modeling (scikit-learn, xgboost, etc.)
    - And more specialized categories
-
-2. **setup_data_env.sh** - Creates a standard Python virtual environment using pip and requirements.txt
-
-3. **environment.yml** - Conda environment configuration with the same package organization as requirements.txt
-
-4. **poetry_setup.sh** - Poetry setup script that installs packages in the same categories as requirements.txt
-
-5. **setup_dev.sh** - Development environment setup that installs the package in development mode with testing tools
 
 All environment files are designed to provide consistent functionality while accommodating different workflow preferences. They include common special case handling:
 
