@@ -34,6 +34,7 @@ This project provides a flexible Python environment equipped with a wide range o
     ```
 
 3.  **Activate the virtual environment:**
+    Change the .env.example file to - .env and insert your db credentials.
     -   On macOS and Linux:
         ```bash
         source venv/bin/activate
