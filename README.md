@@ -1,4 +1,4 @@
-# Curser Analytics
+# Cursor Analytics
 
 A Python toolkit for data analysis and experimentation.
 
@@ -175,7 +175,7 @@ The package includes a comprehensive sample schema file (`full_schema.txt`) that
 ### Accessing the Sample Schema
 
 ```python
-from curser_analytics.samples import get_sample_path
+from cursor_analytics.samples import get_sample_path
 
 # Get the path to the full schema sample
 schema_path = get_sample_path('full_schema.txt')
@@ -188,7 +188,7 @@ with open(schema_path, 'r') as f:
 ### Listing Available Samples
 
 ```python
-from curser_analytics.samples import list_available_samples
+from cursor_analytics.samples import list_available_samples
 
 # Get all available sample files
 samples = list_available_samples()
@@ -197,10 +197,10 @@ print(samples)  # Includes 'full_schema.txt'
 
 ## Project Structure
 
-The project's main Python package, `curser_analytics`, is structured as follows:
+The project's main Python package, `cursor_analytics`, is structured as follows:
 
 ```
-curser_analytics/
+cursor_analytics/
 ├── __init__.py         # Package initialization
 ├── analytics.py        # Main analytics module
 ├── run_schema.py       # Script to run schema analysis
@@ -216,7 +216,7 @@ curser_analytics/
 │   └── (...)
 ├── samples/            # Sample data files
 │   └── (...)
-├── tests/              # Tests for the curser_analytics package
+├── tests/              # Tests for the cursor_analytics package
 │   └── (...)
 └── utils/              # Utility modules (e.g., logger)
     └── (...)
@@ -252,8 +252,8 @@ The analysis results can be saved to a file for further examination or used prog
 3. Install development dependencies
 
 ```bash
-git clone https://github.com/your-username/curser-analytics.git
-cd curser-analytics
+git clone https://github.com/your-username/cursor-analytics.git
+cd cursor-analytics
 ./setup_dev.sh
 ```
 

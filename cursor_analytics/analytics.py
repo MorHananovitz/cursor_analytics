@@ -16,7 +16,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Import our database connection classes
-from curser_analytics.db.connection import (
+from cursor_analytics.db.connection import (
     get_mysql_connection,
     get_postgres_connection,
     get_snowflake_connection,
@@ -24,7 +24,7 @@ from curser_analytics.db.connection import (
 )
 
 # Import query utilities
-from curser_analytics.queries import load_query, list_available_queries
+from cursor_analytics.queries import load_query, list_available_queries
 
 # Map database types to their connection functions
 DB_CONNECTIONS = {

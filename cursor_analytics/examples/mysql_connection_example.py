@@ -2,7 +2,7 @@
 """
 MySQL Connection Example
 
-This example demonstrates how to use the Curser Analytics database connection module
+This example demonstrates how to use the Cursor Analytics database connection module
 to connect to MySQL and execute queries.
 """
 
@@ -14,7 +14,7 @@ import pandas as pd
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Import our database connection utilities
-from curser_analytics.db.connection import get_mysql_connection
+from cursor_analytics.db.connection import get_mysql_connection
 
 def main():
     """Example showing MySQL connection and queries."""

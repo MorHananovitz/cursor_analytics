@@ -1,5 +1,5 @@
 """
-Logger configuration for the Curser Analytics package.
+Logger configuration for the Cursor Analytics package.
 
 This module provides a standard logging configuration for the application.
 """
@@ -64,4 +64,4 @@ def setup_logger(
     return logger
 
 # Create a default logger for the package
-logger = setup_logger('curser_analytics') 
+logger = setup_logger('cursor_analytics') 

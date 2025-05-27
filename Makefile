@@ -1,4 +1,4 @@
-# Makefile for curser-analytics project
+# Makefile for cursor-analytics project
 
 .PHONY: all setup_env lint test clean
 

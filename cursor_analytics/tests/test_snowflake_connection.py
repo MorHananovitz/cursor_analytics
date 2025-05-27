@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 # Import the database connection module
-from curser_analytics.db.connection import get_snowflake_connection
+from cursor_analytics.db.connection import get_snowflake_connection
 
 def test_snowflake_connection():
     print("=== Snowflake Connection Test ===")

@@ -8,7 +8,7 @@ import os
 # Add parent directory to path to ensure imports work
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from db.schema import MySQLSchemaAnalyzer
+from cursor_analytics.db.schema import MySQLSchemaAnalyzer
 
 if __name__ == "__main__":
     print("Starting MySQL schema analysis...")

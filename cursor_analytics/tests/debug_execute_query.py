@@ -1,10 +1,13 @@
+#!/usr/bin/env python
+
 import os
 import sys
 import pandas as pd
+from typing import Optional, Dict, Any
 
 # Import the database connection module
-from curser_analytics.db.connection import get_mysql_connection
-from curser_analytics.analytics import run_analysis, load_query_from_file
+from cursor_analytics.db.connection import get_mysql_connection
+from cursor_analytics.analytics import run_analysis, load_query_from_file
 
 def debug_execute_query():
     print("=== MySQL Query Execution Debug ===")

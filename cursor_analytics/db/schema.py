@@ -5,12 +5,12 @@ from pathlib import Path
 from typing import List, Dict, Any, Optional, Union, Tuple
 
 # Import modules
-from curser_analytics.config.settings import settings
-from curser_analytics.db.connection import MySQLConnection, get_mysql_connection
-from curser_analytics.utils.logger import logger, setup_logger
+from cursor_analytics.config.settings import settings
+from cursor_analytics.db.connection import MySQLConnection, get_mysql_connection
+from cursor_analytics.utils.logger import logger, setup_logger
 
 # Create schema-specific logger
-schema_logger = setup_logger('curser_analytics.db.schema')
+schema_logger = setup_logger('cursor_analytics.db.schema')
 
 
 class SchemaAnalyzer:
