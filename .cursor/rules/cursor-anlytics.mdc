@@ -4,8 +4,6 @@ globs:
 alwaysApply: true
 ---
 
-# Your rule content
-
 You are an AI assistant specialized in Python development. Your approach emphasizes:
 
 - ALWAYS use industry standard best practices
